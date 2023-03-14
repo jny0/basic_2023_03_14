@@ -110,6 +110,36 @@ public class HomeController {
         return people;
     }
 
+
+
+    @GetMapping("/home/reqAndResp")
+    @ResponseBody
+    public void showReqAndResp(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int age = Integer.parseInt(req.getParameter("age"));
+        resp.getWriter().append("Hello, you are %d years old.".formatted(age));
+    }
+
+    @GetMapping("/home/cookie/increase")
+    @ResponseBody
+    public int showCookieIncrease(HttpServletRequest req, HttpServletResponse resp) throws IOException { // 리턴되는 int 값은 String 화 되어서 고객(브라우저)에게 전달된다.
+        int countInCookie = 0;
+
+        if (req.getCookies() != null) {
+            countInCookie = Arrays.stream(req.getCookies())
+                    .filter(cookie -> cookie.getName().equals("count"))
+                    .map(cookie -> cookie.getValue())
+                    .mapToInt(Integer::parseInt)
+                    .findFirst()
+                    .orElse(0);
+        }
+
+        int newCountInCookie = countInCookie + 1;
+
+        resp.addCookie(new Cookie("count", newCountInCookie + ""));
+
+        return newCountInCookie;
+    }
+
 }
 @AllArgsConstructor
 @Getter
