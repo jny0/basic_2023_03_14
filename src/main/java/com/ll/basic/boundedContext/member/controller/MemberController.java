@@ -37,8 +37,8 @@ public class MemberController {
         RsData rsData = memberService.tryLogin(username, password);
 
         if (rsData.isSuccess()) {
-            long memberId = (long) rsData.getData();
-            resp.addCookie(new Cookie("loginedMemberId", memberId + ""));
+            Member member = (Member) rsData.getData();
+            resp.addCookie(new Cookie("loginedMemberId", member.getId() + ""));
         }
 
         return rsData;
@@ -68,7 +68,7 @@ public class MemberController {
             loginedMemberId = Arrays.stream(req.getCookies())
                     .filter(cookie -> cookie.getName().equals("loginedMemberId"))
                     .map(Cookie::getValue)
-                    .mapToInt(Integer::parseInt)
+                    .mapToLong(Long::parseLong)
                     .findFirst()
                     .orElse(0);
         }
