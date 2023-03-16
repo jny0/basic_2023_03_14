@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +27,11 @@ public class HomeController {
 
     private int count;
     private List<Person> people;
+    @Autowired  // 필드 주입
     private MemberService memberService;
     public HomeController() {
         count = -1;
         people = new ArrayList<>();
-        memberService = new MemberService();
     }
 
     // @GetMapping("/home/main") 의 의미
