@@ -1,5 +1,8 @@
 package com.ll.basic.boundedContext.home.controller;
 
+import com.ll.basic.boundedContext.member.entity.Member;
+import com.ll.basic.boundedContext.member.repository.MemberRepository;
+import com.ll.basic.boundedContext.member.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,9 +26,11 @@ public class HomeController {
 
     private int count;
     private List<Person> people;
+    private MemberService memberService;
     public HomeController() {
         count = -1;
         people = new ArrayList<>();
+        memberService = new MemberService();
     }
 
     // @GetMapping("/home/main") 의 의미
@@ -138,6 +143,12 @@ public class HomeController {
         resp.addCookie(new Cookie("count", newCountInCookie + ""));
 
         return newCountInCookie;
+    }
+
+    @GetMapping("/home/user1")
+    @ResponseBody
+    public Member showUser1() {
+        return memberService.findByUsername("user1");
     }
 
 }
