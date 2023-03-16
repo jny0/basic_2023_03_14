@@ -17,6 +17,25 @@ public class MemberController {
 
     @GetMapping("/member/login")
     @ResponseBody
+    public String showLogin() {
+        if (rq.isLogined()) {
+            return """
+                    <h1>이미 로그인 되었습니다.</h1>
+                    """.stripIndent();
+        }
+
+        return """
+                <h1>로그인</h1>
+                <form action="doLogin">
+                <input type="text" placeholder="아이디" name="username">
+                <input type="password" placeholder="비밀번호" name="password">
+                <input type="submit" value="로그인">
+                </form>
+                """;
+    }
+
+    @GetMapping("/member/doLogin")
+    @ResponseBody
     public RsData login(String username, String password) {
 
         if (username == null || username.trim().length() == 0) {
