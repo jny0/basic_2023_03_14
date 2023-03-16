@@ -26,12 +26,13 @@ import java.util.*;
 public class HomeController {
 
     private int count;
-    private List<Person> people;
-    @Autowired  // 필드 주입
-    private MemberService memberService;
-    public HomeController() {
+    private final List<Person> people;
+    // 필드 주입
+    private final MemberService memberService;
+    public HomeController(MemberService memberService) {
         count = -1;
         people = new ArrayList<>();
+        this.memberService = memberService;
     }
 
     // @GetMapping("/home/main") 의 의미
