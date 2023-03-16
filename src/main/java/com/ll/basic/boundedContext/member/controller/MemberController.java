@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MemberController {
     private final MemberService memberService;
-
     @Autowired     //생성자주입
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
