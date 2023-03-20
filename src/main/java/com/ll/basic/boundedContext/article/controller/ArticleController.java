@@ -1,16 +1,13 @@
-package com.ll.basic.article.controller;
+package com.ll.basic.boundedContext.article.controller;
 
-import com.ll.basic.article.entity.Article;
-import com.ll.basic.article.repository.ArticleRepository;
-import com.ll.basic.article.service.ArticleService;
+import com.ll.basic.boundedContext.article.entity.Article;
+import com.ll.basic.boundedContext.article.service.ArticleService;
 import com.ll.basic.base.rsData.RsData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/article")
@@ -29,6 +26,6 @@ public class ArticleController {
 
         Article createdArticle = articleService.write(title, body);
 
-        return RsData.of("S-1","1번 글이 생성되었습니다");
+        return RsData.of("S-1","1번 글이 생성되었습니다", createdArticle);
     }
 }

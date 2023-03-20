@@ -1,7 +1,7 @@
-package com.ll.basic.article.service;
+package com.ll.basic.boundedContext.article.service;
 
-import com.ll.basic.article.entity.Article;
-import com.ll.basic.article.repository.ArticleRepository;
+import com.ll.basic.boundedContext.article.entity.Article;
+import com.ll.basic.boundedContext.article.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

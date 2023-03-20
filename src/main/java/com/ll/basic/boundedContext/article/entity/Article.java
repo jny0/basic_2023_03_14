@@ -1,4 +1,4 @@
-package com.ll.basic.article.entity;
+package com.ll.basic.boundedContext.article.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
